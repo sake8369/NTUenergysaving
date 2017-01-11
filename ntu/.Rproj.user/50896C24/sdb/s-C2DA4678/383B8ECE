@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\n\n# Define server logic required to draw a histogram\n\nSys.setlocale(category = \"LC_ALL\", locale = \"zh_TW.UTF-8\")\nlibrary(readxl)\nsuppressMessages(library(dplyr))\ndf <- read_excel(\"TaiDa_DailyPowerUsage.xlsx\")\n\nshinyServer(function(input, output) {\n  \n  # Expression that generates a histogram. The expression is\n  # wrapped in a call to renderPlot to indicate that:\n  #\n  #  1) It is \"reactive\" and therefore should re-execute automatically\n  #     when inputs change\n  #  2) Its output type is a plot\n  \n  output$distPlot <- renderPlot({\n    NTU_Daily_Electricity_Consumption  <- df$`Total Electricity Usage`  # Old Faithful Geyser data\n    bins <- seq(min(NTU_Daily_Electricity_Consumption), max(NTU_Daily_Electricity_Consumption), length.out = input$bins + 1)\n    \n    # draw the histogram with the specified number of bins\n    hist(NTU_Daily_Electricity_Consumption, breaks = bins, col = 'darkgray', border = 'white')\n  })\n})",
+    "created" : 1484150670808.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3132668563",
+    "id" : "383B8ECE",
+    "lastKnownWriteTime" : 1484149122,
+    "last_content_update" : 1484149122,
+    "path" : "~/Desktop/NTUenergysaving/server.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
